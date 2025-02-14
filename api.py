@@ -9,6 +9,7 @@ from extractors.util.spacy import download_all_models
 api = FastAPI()
 
 origins = [
+    "http://192.168.1.42:8000",
     "http://127.0.0.1",
     "http://127.0.0.1:3000",
     "http://127.0.0.1:3001",

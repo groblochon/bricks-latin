@@ -11,7 +11,8 @@ INPUT_EXAMPLE = {
 
 MODELS = {
     "en": "en_core_web_sm",
-    "de": "de_core_news_sm"
+    "fr": "fr_core_news_sm",
+    "la": "la_core_web_lg"
 }
 
 
