@@ -16,6 +16,8 @@
     <a href="https://bricks.kern.ai/"><img src="https://img.shields.io/badge/Web-white.svg" alt="Website"></a>
 </p>
 
+WARNING : dont build with python > 3.12
+
 Browse [bricks](https://bricks.kern.ai) to find gold nuggets for your projects; enrich your texts e.g. with sentence complexity estimations, sentiment analysis, and more.
 
 ![](images/hero.svg)
