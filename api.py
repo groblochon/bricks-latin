@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-import classifiers
-import extractors
-import generators
-from extractors.util.spacy import download_all_models
+from scalar_fastapi.scalar_fastapi import Layout
+
+import spacy
+from scalar_fastapi import get_scalar_api_reference
 
 api = FastAPI()
 
@@ -45,9 +45,17 @@ async def root():
     """
     return HTMLResponse(content=html_content, status_code=200)
 
+@api.get("/scalar", include_in_schema=False)
+async def scalar_html():
+    return get_scalar_api_reference(
+        openapi_url=api.openapi_url,
+        title=api.title,
+        layout=Layout.MODERN
+    )
 
-api.include_router(classifiers.router, prefix="/classifiers", tags=["classifiers"])
-api.include_router(extractors.router, prefix="/extractors", tags=["extractors"])
-api.include_router(generators.router, prefix="/generators", tags=["generators"])
 
-download_all_models()
+# download_all_models()
+
+api.include_router(spacy.router, prefix="/spacy", tags=["spacy"])
+# api.include_router(extractors.router, prefix="/extractors", tags=["extractors"])
+# api.include_router(generators.router, prefix="/generators", tags=["generators"])
