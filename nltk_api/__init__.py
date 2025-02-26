@@ -242,8 +242,8 @@ def url_keyword_parser(url: str = Form("https://stackoverflow.com/questions/1956
                        removeStopwords: bool = Form(True),
                        removeHexLike: bool = Form(True),
                        textSeperator: str = Form(", "),
-                       splitRegex: str = "\W",
-                       wordWhiteList: [] = Form(None),
+                       splitRegex: str = Form("\W"),
+                       wordWhiteList = Form(None),
                        ):
 
     """Extract keywords from a url."""
