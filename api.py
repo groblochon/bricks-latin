@@ -3,7 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from scalar_fastapi.scalar_fastapi import Layout
 
-import spacy
+import nltk_api
+import spacy_api
+import textacy_api
+import textblob_api
+import textstat_api
 from scalar_fastapi import get_scalar_api_reference
 
 api = FastAPI()
@@ -56,6 +60,8 @@ async def scalar_html():
 
 # download_all_models()
 
-api.include_router(spacy.router, prefix="/spacy", tags=["spacy"])
-# api.include_router(extractors.router, prefix="/extractors", tags=["extractors"])
-# api.include_router(generators.router, prefix="/generators", tags=["generators"])
+api.include_router(spacy_api.router, prefix="/spacy", tags=["spacy"])
+api.include_router(textstat_api.router, prefix="/textstat", tags=["textstat"])
+api.include_router(nltk_api.router, prefix="/nltk", tags=["nltk"])
+api.include_router(textacy_api.router, prefix="/textacy", tags=["textacy"])
+api.include_router(textblob_api.router, prefix="/textblob", tags=["textblob"])

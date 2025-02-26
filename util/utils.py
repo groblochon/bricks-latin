@@ -1,17 +1,16 @@
-import spacy
 from enum import Enum
+import spacy
 
 class LangEnum(str, Enum):
-    AUTO = 'AUTO'
     EN = 'en_core_web_sm'
     FR = 'fr_core_news_sm'
     LA = 'la_core_web_lg'
 
 class SpacySingleton:
     nlps = { LangEnum.FR : None,
-            LangEnum.EN : None,
-            LangEnum.LA : None
-           }
+             LangEnum.EN : None,
+             LangEnum.LA : None
+             }
 
     @classmethod
     def get_nlp(cls, lang: LangEnum):
