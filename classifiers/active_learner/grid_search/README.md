@@ -1,1 +1,0 @@
-`sklearn` based grid search to train an active learner classification head. The grid search entails testing every unique combination of hyperparameters in the search space to determine the combination that yields the best performance.

@@ -12,6 +12,21 @@ from util.utils import LangEnum, SpacySingleton
 
 router = APIRouter()
 
+@router.post("/textblob_spelling_correction/",
+             summary="Correct spelling mistakes in a text using the TextBlob library.",
+             description=
+             """
+             ## Examples:
+             - His text contaisn some speling errors.
+             - fr
+             - la
+             """)
+def textblob_spelling_correction(text: str = Form("His text contaisn some speling errors.")):
+
+    textblob_text = TextBlob(text)
+    return {"correctedText": str(textblob_text.correct())}
+
+
 @router.post("/aspect_extraction/",
              summary="Matches aspects in a text to positive or negative sentiment.",
              description=
@@ -42,3 +57,75 @@ def aspect_extraction(text: Optional[str] = Form("It has a really great battery 
                 matches.append(["positive", chunk.start, chunk.end])
 
     return {"aspects": matches}
+
+
+@router.post("/textblob_sentiment/",
+             summary="Calculate sentiment of a text.",
+             description=
+             """
+             ## Examples:
+             - Wow, this is awesome!
+             - fr
+             - la
+             """)
+def textblob_sentiment(text: Optional[str] = Form("Wow, this is awesome!"),
+                       lang: Optional[LangEnum] = Form(LangEnum.EN)):
+
+    blob = TextBlob(text)
+
+    return {"sentiment": get_mapping_sentiment(blob.sentiment.polarity * 100)}
+
+def setall(d, keys, value):
+    for k in keys:
+        d[k] = value
+
+
+SENTIMENT_MAX_SCORE = 100
+SENTIMENT_MIN_SCORE = -100
+
+SENTIMENT_OUTCOMES = {}
+setall(SENTIMENT_OUTCOMES, range(40, SENTIMENT_MAX_SCORE + 1), "very positive")
+setall(SENTIMENT_OUTCOMES, range(20, 40), "positive")
+setall(SENTIMENT_OUTCOMES, range(-20, 20), "neutral")
+setall(SENTIMENT_OUTCOMES, range(-40, -20), "negative")
+setall(SENTIMENT_OUTCOMES, range(SENTIMENT_MIN_SCORE, -40), "very negative")
+
+
+def get_mapping_sentiment(score):
+    if score < SENTIMENT_MIN_SCORE:
+        return SENTIMENT_OUTCOMES[SENTIMENT_MIN_SCORE]
+    return SENTIMENT_OUTCOMES[int(score)]
+
+
+@router.post("/textblob_subjectivity/",
+             summary="Calculate subjectivity of a text.",
+             description=
+             """
+             ## Examples:
+             - Wow, this is awesome!
+             - fr
+             - la
+             """)
+def textblob_subjectivity(text: str = Form("Wow, this is awesome!")):
+
+    blob = TextBlob(text)
+
+    return {"subjectivity": get_mapping_subjectivity(blob.sentiment.subjectivity * 100)}
+
+
+SUBJECTIVITY_MAX_SCORE = 100
+SUBJECTIVITY_MIN_SCORE = 0
+
+SUBJECTIVITY_OUTCOMES = {}
+setall(SUBJECTIVITY_OUTCOMES, range(80, SUBJECTIVITY_MAX_SCORE + 1), "subjective")
+setall(SUBJECTIVITY_OUTCOMES, range(60, 80), "rather subjective")
+setall(SUBJECTIVITY_OUTCOMES, range(40, 60), "neutral")
+setall(SUBJECTIVITY_OUTCOMES, range(20, 40), "rather objective")
+setall(SUBJECTIVITY_OUTCOMES, range(SUBJECTIVITY_MIN_SCORE, 20), "objective")
+
+
+def get_mapping_subjectivity(score):
+    if score < SUBJECTIVITY_MIN_SCORE:
+        return SUBJECTIVITY_OUTCOMES[SUBJECTIVITY_MIN_SCORE]
+    return SUBJECTIVITY_OUTCOMES[int(score)]
+

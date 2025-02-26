@@ -1,1 +1,0 @@
-`sklearn` based implementation of the Random Search Active Learning algorithm. The random search, instead of searching for all the hyperparameters in the search space, selects and tests a random combination of the hyperparameters. As a consequence, it is much faster and more robust than the grid search algorithm.

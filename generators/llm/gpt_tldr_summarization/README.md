@@ -1,1 +1,0 @@
-Uses OpenAI's `GPT-3.5-turbo` GPT model to summarise a given text in a few lines. An API key can be obtained directly from OpenAI. Contact us at info@kern.ai if you require an API key or need any support from us.

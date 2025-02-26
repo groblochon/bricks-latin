@@ -1,1 +1,0 @@
-This module uses `textstat` package to count the number of syllables from a given text. For example, `"There is no one in the hospital"` will output 9, since there are 9 syllables in the whole sentence.

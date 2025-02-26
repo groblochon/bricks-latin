@@ -1,2 +1,0 @@
-# Classifiers
-Classifiers are modules that summarizes a given text into a specific category. For example, a module that classifies a text into the category `news` or `blog` would go into this folder. It can also be about enrichments, e.g. to detect languages and such.

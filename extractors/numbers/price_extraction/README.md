@@ -1,1 +1,0 @@
-This module extracts prices from a given text. Spacy's entity labellings can be used to extracts tokens labelled as `MONEY`. The best part is that the currency is also included.

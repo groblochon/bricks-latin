@@ -1,1 +1,0 @@
-This module extracts synonyms of a specified word using `Wordnet`. It takes a target word as the input and the input text. Then, it matches the target word with each of the words in the text string and based on wordnet, extracts the synonym of the target word from the input text.

@@ -1,1 +1,0 @@
-This brick splits a text into smaller pieces by newline characters. It can be used for the 'embedding list' attribute in refinery to increase the accuracy for similarity search. 

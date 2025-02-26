@@ -1,1 +1,0 @@
-This module extracts emails from a given text using regular expressions.

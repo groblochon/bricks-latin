@@ -1,1 +1,0 @@
-This module detects spaCy tokens that fit a regex pattern and extracts them.

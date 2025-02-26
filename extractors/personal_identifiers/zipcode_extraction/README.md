@@ -1,1 +1,0 @@
-This module extracts the zip codes from a text using regular expressions. All the valid zip codes formats are located in a dictionary in the source code.

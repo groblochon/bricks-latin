@@ -1,1 +1,0 @@
-Uses a BERT model for sentiment classification of german texts. Requires a HuggingFace API key. Visit https://huggingface.co/oliverguhr/german-sentiment-bert for more information.

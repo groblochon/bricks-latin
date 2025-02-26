@@ -1,1 +1,0 @@
-Extracts digits from string of length n. 

@@ -1,1 +1,0 @@
-This module extracts a path from a text by using the os module from Python.

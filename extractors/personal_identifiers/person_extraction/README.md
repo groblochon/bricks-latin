@@ -1,1 +1,0 @@
-This module extracts names from a given text using spaCy. It uses entity labels to match entities labelled as `PERSON`. Recommended: use `en_core_web_lg` tokenizer to generate accurate results.

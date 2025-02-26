@@ -104,3 +104,34 @@ def difficult_words_extraction(text: Optional[str] = Form("My cat is eleven year
         difficult_words.append([your_label, span.start, span.end])
 
     return {f"{your_label}s": difficult_words}
+
+
+@router.post("/syllable_count/",
+             summary="Counts the number of sylabbles in a text.",
+             description=
+             """
+             ## Examples:
+             - This sentence has 7 syllables.
+             - fr
+             - la
+             """)
+def syllable_count(text: Optional[str] = Form("This sentence has 7 syllables.")):
+
+    syllables = textstat.syllable_count(text)
+    return {"syllableCount": syllables}
+
+
+@router.post("/reading_time/",
+             summary="Calculate the reading time of a text.",
+             description=
+             """
+             ## Examples:
+             - This sentence should take less than 1 second to read.
+             - fr
+             - la
+             """)
+def reading_time(text: Optional[str] = Form("This sentence should take less than 1 second to read."),
+                 ms_per_char: float = Form(14.69)):
+
+    time_to_read = textstat.reading_time(text, ms_per_char=ms_per_char)
+    return {"readingTime": time_to_read}
