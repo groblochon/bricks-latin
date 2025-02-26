@@ -3,12 +3,18 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from scalar_fastapi.scalar_fastapi import Layout
 
+import kernai_api
 import nltk_api
+import other_api
+import sklearn_api
 import spacy_api
+import sumy_api
 import textacy_api
 import textblob_api
 import textstat_api
 from scalar_fastapi import get_scalar_api_reference
+
+import tiktoken_api
 
 api = FastAPI()
 
@@ -65,3 +71,8 @@ api.include_router(textstat_api.router, prefix="/textstat", tags=["textstat"])
 api.include_router(nltk_api.router, prefix="/nltk", tags=["nltk"])
 api.include_router(textacy_api.router, prefix="/textacy", tags=["textacy"])
 api.include_router(textblob_api.router, prefix="/textblob", tags=["textblob"])
+api.include_router(tiktoken_api.router, prefix="/tiktoken", tags=["tiktoken"])
+api.include_router(sumy_api.router, prefix="/sumy", tags=["sumy"])
+api.include_router(sklearn_api.router, prefix="/sklearn", tags=["sklearn"])
+api.include_router(kernai_api.router, prefix="/kernai", tags=["kernai"])
+api.include_router(other_api.router, prefix="/other", tags=["other"])
